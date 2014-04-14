@@ -1,0 +1,7 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body%}
+        <form action="EndOfTest.php" method="post">
+            {{ form_widget(formCandidat) }}
+            <input type="submit" name="validTest" value="valider mon test" />
+        </form>
+{% endblock %}

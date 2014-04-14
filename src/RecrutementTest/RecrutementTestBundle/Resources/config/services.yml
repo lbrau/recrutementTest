@@ -1,0 +1,7 @@
+parameters:
+#    recrutement_test.example.class: RecrutementTest\RecrutementTestBundle\Example
+
+services:
+#    recrutement_test.example:
+#        class: %recrutement_test.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

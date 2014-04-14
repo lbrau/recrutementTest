@@ -1,0 +1,43 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body %}
+<table>
+    <caption>
+        <h1>Liste des candidats passés</h1>
+    </caption>
+
+    <thead>
+        <tr>
+            <th scope="col" rowspan="2">Nom</th>
+            <th scope="col" rowspan="2">Prénom</th>
+            <th scope="colgroup" rowspan="2">Adresse e-mail</th>
+            <th scope="col" rowspan="2">Détails des tests passées</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for oCandidat in aAllCandidats %}
+        <tr>
+            <td>{{ oCandidat.nom }}</td>
+            <td>{{ oCandidat.prenom }}</td>
+            <td>{{ oCandidat.Email }}</td>
+            <td>
+                <table>
+                    <th>nom</th>
+                    <th>resultat</th>
+                    <th>Durée (minutes)</th>
+                    <th>date</th>
+                {% for oTest in oCandidat.tests %}
+                    <tr>
+                        <td>{{ oTest.nom }}</td>
+                        <td>{{ oTest.resultat }} %</td>
+                        <td>{{ oTest.duree }}</td>
+                        <td>{{ oTest.date | date("m-d-Y H:i:s") }}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+{% endblock body %}

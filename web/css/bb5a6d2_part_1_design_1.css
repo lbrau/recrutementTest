@@ -1,0 +1,247 @@
+body {
+    background-color: #dcf7fa;
+    height: 100%;
+}
+
+
+
+/*****************************************************************************************************************************************************
+                                                             PAGE DE CONNEXION
+*****************************************************************************************************************************************************/
+
+#header {
+    width: 100%;
+    height: 50px;
+    background-color: cornflowerblue;
+    text-align: center;
+    padding: 10px;
+}
+    #header #adminForm,.righthead {
+        float: right;
+        margin-right: 20px;
+    }
+
+#wrapper {
+    position: relative;
+    width: 200px;
+    margin: auto;
+    background-color: beige;
+    padding: 20px;
+    top: 200px;
+}
+
+/*****************************************************************************************************************************************************
+                                                             PAGE FORMULAIRE CANDIDAT
+*****************************************************************************************************************************************************/
+
+#wrapper_candidat {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    background-color: #afecff;
+    padding: 20px;
+    top: 200px;
+}
+
+
+/*****************************************************************************************************************************************************
+                                                             PAGE D'ADMINISTRATION
+*****************************************************************************************************************************************************/
+.flashMessage {
+    background-color: blanchedalmond;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+#wrapper_admin {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    background-color: #afecff;
+    padding: 20px;
+    top: 100px;
+}
+
+#wrapper_admin h3{
+    text-align: center;
+    
+}
+.menu {
+    display: inline-block;
+    /*float: left;*/
+    /*background-color: blue;*/
+    color: wheat;
+    padding: 10px;
+}
+
+.menu:hover  {
+    display: inline-block;
+}
+
+.menu ul {
+    /*float: left;*/
+    /*position: absolute;*/ 
+    
+}
+
+.menu ul:hover  {
+/*    margin: 0;
+    padding: 0;
+    background-color: red;*/
+}
+
+.menu ul li {
+    /*display: none;*/
+/*    margin: 0;
+    padding: 0;*/
+}
+
+/*#menu ul:hover li {
+    background-color: yellow;
+    display: block;
+}*/
+
+
+
+/********************************* DESIGN DU TABLEAU ******************************/
+
+table {
+    color:black;
+    margin: auto;
+    /*background-color: white;*/
+    /*background-image: url(../img/cat.jpg);*/
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+    border: 1px solid #79B2AF;
+    border-collapse: separate;
+    border-width: 0 1px 1px 0;
+    border-spacing: 4px;
+}
+
+th, td {
+border-width: 5px;
+padding: 1px 6px;
+}
+
+th { /*texte des intitulés de colonnes et cellules*/
+color: #31605D;
+}
+
+thead,td {
+text-align: center;
+}
+
+td:empty {
+background: #A7DBD8;
+border: 0;
+}
+
+thead th { /*background entete de colonne*/
+background: #D3EDEB;
+}
+
+thead tr:nth-of-type(n+2) th { /*background sous-classes de colonne*/
+background: #C1E5E3;
+}
+
+tfoot td { /*cellules de resultats*/
+background: #95C4C1;
+font-style: italic;
+font-weight: bold;
+font-family: Georgia, "Times New Roman", Times, serif;
+padding: 5px 6px;
+text-shadow: 0 1px 1px #FFFFFF; 
+}
+
+th[scope=row] {
+font-variant: small-caps;
+letter-spacing: 1px;
+}
+
+tbody td {
+font-style: italic;
+font-family: Georgia, "Times New Roman", Times, serif;
+text-shadow: 0 1px 1px #FFFFFF;
+background: #E5F2F1;
+}
+
+tbody tr:nth-child(odd) td { /*effet ligne lignes impaires (ligne1 - ligne 3 - ligne ...)*/
+    background-color:#ccccff;
+}
+
+tbody tr:nth-child(even) td { /*effet ligne lignes paires (ligne2 - ligne4 - ligne ...)*/
+background-color:#d7eceb; 
+}
+
+tbody tr:nth-child(odd):hover td,tbody tr:nth-child(even):hover td { /*rollover ligne*/
+background-color:#eaae58;
+}
+
+tbody tr:nth-child(odd) td:hover,tbody tr:nth-child(even) td:hover { /*rollover cellule*/
+background-color:#ece7c9;
+}
+
+table,caption h1,thead th,tfoot td,tbody td { /*arrondi des angles*/
+border-radius: 2px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+}
+
+.block {
+    display: block;
+}
+
+/**************************************  FIN DESIGN TABLEAU   ****************************/
+
+.menu{
+ float: left;
+ margin: 2px;
+ padding: 2px;
+}
+ 
+.titreMenu, .contenuMenu, .lienMenu{
+ color: #000000;
+}
+ 
+.titreMenu, .contenuMenu {
+ border: 2px outset #AAAAAA;
+ width: 120px;
+ text-align: center;
+ margin: 0px;
+ padding: 0px;
+}
+ 
+.contenuMenu{
+ display: none;
+ position: absolute;
+ background-color: #FFFFFF;
+}
+ 
+.menuOverflow{
+ overflow: auto;
+ height: 200px;
+}
+ 
+.itemOver{
+ background-color: #AAAAFF
+}
+ 
+.itemOut{
+ background-color: #FFFFFF;
+}
+ 
+.lienMenu{
+ text-decoration: none;
+}
+ 
+.crlf{
+ clear: both;
+ /*visibility: hidden;*/
+}
+
+
+
+

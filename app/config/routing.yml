@@ -1,0 +1,22 @@
+RecrutementTestAdminBundle_admin_recrutement_test_admin_bundle_pref:
+    resource: "@RecrutementTestAdminBundle/Controller/Pref/"
+    type:     admingenerator
+    prefix:   /admin/recrutement_test_admin_bundle/pref
+
+#AdminGeneratorAdminBundle_admin_admin_generator_admin_bundle_admin:
+#    resource: "@AdminGeneratorAdminBundle/Controller/Admin/"
+#    type:     admingenerator
+#    prefix:   /admin/admin_generator_admin_bundle/admin
+
+recrutement_my_dashboard:
+    resource: "@RecrutementMyDashboardBundle/Resources/config/routing.yml"
+    prefix:   /
+
+recrutement_test:
+    resource: "@RecrutementTestBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+_assetic:
+    resource: .
+    type: assetic
+

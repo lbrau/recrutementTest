@@ -1,0 +1,7 @@
+recrutement_my_dashboard_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: RecrutementMyDashboardBundle:Default:index }
+
+my_dashboard_welcome:
+    pattern: /plop
+    defaults: { _controller: RecrutementMyDashboardBundle:Dashboard:welcome }

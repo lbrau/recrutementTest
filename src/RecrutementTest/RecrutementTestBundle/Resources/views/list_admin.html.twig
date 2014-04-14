@@ -1,0 +1,39 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body %}
+<table>
+    <caption>
+        <h1>Liste des administrateurs</h1>
+    </caption>
+
+    <thead>
+        <tr>
+            <th scope="col" rowspan="2">Nom</th>
+            <th scope="col" rowspan="2">Actif</th>
+            <th scope="col" rowspan="2">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for oAdmin in aAllAdmins %}
+            
+        <tr>
+            <td>{{ oAdmin.nom }}</td>
+            {% if oAdmin.actif == true %}
+
+               {% set sAction = "désactiver" %}
+               <td>actif</td>
+            {% else %}
+                <td>inactif</td>
+                {% set sAction = "activer" %}
+            {% endif %}
+            <td>
+                <a href="{{ path('change_visibility_admin', {'iId': oAdmin.id, 'sAction': sAction }) }}" name="is_visible">{{ sAction }}</a><br>
+                <a href="{{ path('manage_admin', {'iId': oAdmin.id}) }}" name="modif_admin">modifier</a><br>
+                <a href="{{ path('drop_admin', {'iId': oAdmin.id}) }}" name="drop_admin">supprimer</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+<a href="{{ path('manage_admin') }}" name="newAdmin" value="create">créer un nouvel admin</a>
+{% endblock body %}

@@ -1,0 +1,7 @@
+parameters:
+#    recrutement_my_dashboard.example.class: Recrutement\MyDashboardBundle\Example
+
+services:
+#    recrutement_my_dashboard.example:
+#        class: %recrutement_my_dashboard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

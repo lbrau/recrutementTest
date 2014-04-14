@@ -1,0 +1,113 @@
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                  Routing des réponses
+# --------------------------------------------------------------------------------------------------------------------------
+drop_reponse_in_question:
+    pattern: /admin/drop/reponse/{iIdReponse}
+    defaults: { _controller: RecrutementTestBundle:Reponse:dropReponseInQuestion, iIdReponse: null }
+    
+manage_reponse_popin_ajax:
+    pattern: /admin/manage/reponse/popin
+    defaults: { _controller: RecrutementTestBundle:Reponse:manageReponseAjax, iId: null }
+
+load_reponse_popin_ajax:
+    pattern: /admin/manage/reponse/popin
+    defaults: { _controller: RecrutementTestBundle:Reponse:loadReponsePopinAjax }
+
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                  Routing des questions
+# --------------------------------------------------------------------------------------------------------------------------
+
+manage_questions_form:
+    pattern: /admin/manage/form/question/{iId}
+    defaults: { _controller: RecrutementTestBundle:Question:displayQuestionForm, iId: null }
+
+drop_question:
+    pattern: /admin/manage/question/suppression/{iIdQuestion}
+    defaults: { _controller: RecrutementTestBundle:Question:dropQuestion, iIdQuestion: null }
+    
+manage_question:
+    pattern: /admin/manage/question/{iIdQuestion}
+    defaults: { _controller: RecrutementTestBundle:Question:manageQuestion, iIdQuestion: null }
+        
+manage_reponse:
+    pattern: /admin/manage/reponse
+    defaults: { _controller: RecrutementTestBundle:Question:manageReponse }
+    
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                  Routing général
+# --------------------------------------------------------------------------------------------------------------------------
+
+recrutement_test_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: RecrutementTestBundle:Default:index }
+
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                  Routing des tests
+# --------------------------------------------------------------------------------------------------------------------------
+
+list_test:
+    pattern: /admin/list/tests
+    defaults: { _controller: RecrutementTestBundle:Test:listTests }   
+    
+manage_admin_test:
+    pattern:  /admin/manage/test/{sAction}/{iId}/{iNbQuestion}
+    defaults: { _controller: RecrutementTestBundle:Test:manageTest,  iId: null, iNbQuestion: null, sAction: creer }
+    requirements:
+      
+drop_admin_test:
+    pattern: /admin/drop/test/{iId}
+    defaults: { _controller: RecrutementTestBundle:Test:dropTest, iId: null }
+    
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                Routing des administrateurs
+# --------------------------------------------------------------------------------------------------------------------------
+list_admin:
+    pattern: /admin/list/admin
+    defaults: { _controller: RecrutementTestBundle:Admin:listAdmin }   
+    
+change_visibility_admin:
+    pattern: /admin/manage/visibility/{iId}/{sAction}
+    defaults: { _controller: RecrutementTestBundle:Admin:changeAdminVisiblity }
+    
+drop_admin:
+    pattern:  /admin/manage/drop/{iId}
+    defaults: { _controller: RecrutementTestBundle:Admin:dropAdmin, iId: null }
+
+manage_admin:
+    pattern:  /admin/manage/{iId}
+    defaults: { _controller: RecrutementTestBundle:Admin:manageAdmin, iId: null }
+
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                  Routing des candidats
+# --------------------------------------------------------------------------------------------------------------------------
+
+list_candidat:
+    pattern: /admin/list/candidats
+    defaults: { _controller: RecrutementTestBundle:Admin:listCandidats }
+    
+manage_candidat:
+    pattern: /admin/manage/candidat
+    defaults: { _controller: RecrutementTestBundle:Candidat:manageCandidat }
+    
+candidat_accueil:
+    pattern: /candidat/accueil
+    defaults: { _controller: RecrutementTestBundle:Candidat:accueil }
+
+
+
+# --------------------------------------------------------------------------------------------------------------------------
+#                                                      ROUTING DU FRONT
+# --------------------------------------------------------------------------------------------------------------------------
+
+connexion_form:
+    pattern: /connexion
+    defaults: { _controller: RecrutementTestBundle:Candidat:Connexion }
+
+candidat_accueil:
+    pattern: /candidat/accueil/{iIdCandidat}/{iIdTest}
+    defaults: { _controller: RecrutementTestBundle:Candidat:Accueil }
+    
+connexion_admin:
+    pattern: /admin/connexion
+    defaults: { _controller: RecrutementTestBundle:Admin:Connexion }
+    

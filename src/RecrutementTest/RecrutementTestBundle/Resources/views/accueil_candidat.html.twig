@@ -1,0 +1,26 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body %}
+{{ oCandidat.nom }}
+    <h3>{{ oTest.nom }}</h3>
+    <div>
+            {% set i = 1 %}
+            {% for question in oTest.questions %}
+            <p>
+                    <div>
+                        <label><b>Question{{ i }}</b></label>
+                        <div><i>{{ question.libelle }}</i></div>
+                    </div>
+                    <div>
+                        {% for oReponse in question.reponses %}
+                            <div>
+                                <span>{{ oReponse.intitule }}</span>
+                                <span><input type="checkbox" name="reponse{{ i }}"/></span>
+                                <span>{{ oReponse.isTrue }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+             </p>
+            {% set i = i+1 %}
+            {% endfor %}
+    </div>
+{% endblock body %}

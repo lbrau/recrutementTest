@@ -1,0 +1,179 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body %}
+<form action="" method="post" >
+        {#{{ form_widget(form) }}#}
+         {{ form_start(form) }}   
+            {{ form_errors(form) }}
+
+            {{ form_row(form.nom) }}
+            {{ form_row(form.libelle) }}
+      
+            <div class="question_content"></div>
+            <input type="button" class="add_question" name="add_question" value="ajouter une question" />
+            <div class="question">
+                <table>
+                    <th>Questions</th>
+                    <th>Réponses proposées</th>
+                    <th>Bonne réponse</th>
+                    <th>Action</th>
+                {% for oQuestion in aQuestions %}
+                    <tr id="{{ oQuestion.id }}">
+                        <td class="libelle">
+                            {{ oQuestion.libelle }}
+                        </td>
+                        <td class="responses">
+                            {% for oReponse in oQuestion.reponses %}
+                               <div>
+                                   {{ oReponse.intitule }}<br>
+                               </div>
+                            {% endfor %}
+                        </td>
+                        <td class="correct-response">
+                            {% for oReponse in oQuestion.reponses %}
+                               <div>
+                                   {% if oReponse.isTrue == true %}
+                                   <input type="checkbox" checked disabled="disabled"/>
+                                   {% else %}
+                                   <input type="checkbox" disabled="disabled"/>
+                                   {% endif %}
+                               </div>
+                            {% endfor %}
+                        </td>
+                        <td>
+                             <a href="{{ path('manage_question', { 'iIdQuestion': oQuestion.id }) }}" >modifier</a><br>
+                             <a href="{{ path('drop_question', { 'iIdQuestion': oQuestion.id }) }}" >supprimer</a><br/>
+                             <a href="#response_form" id="addResponse" class="addResponse" data-id="{{ oQuestion.id }}">ajouter reponse</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+            {{ form_rest(form) }}
+            <input type="submit"  name="valid_form" value="Envoyez le formulaire"/>
+            {{ form_end(form, { 'render_rest': false }) }}
+    </form>
+        {#<button id="ajout-form" name="ajout_question">Ajouter une question</button>#}
+        <div class="questionForm"></div>
+         <div style="display:none">
+                <form id="response_form" method="post" action="{{ path('manage_reponse_popin_ajax')}}">
+         
+                        <p>
+                                <label for="intitule_response">Intitulé de la réponse: </label>
+                                <input type="text" id="intitule_response" name="intitule_response" size="30" />
+                        </p>
+                        <p>
+                                <label for="is_true">Réponse: </label>
+                                <input type="checkbox" name="is_true" id="id_true" />
+                        </p>
+                        <p>
+                            <input type="hidden" name="id_question" id="id_question" />
+                        </p>
+                        <p>
+                                <input type="submit" value="Ajouter la réponse" />
+                        </p>
+                        
+                </form>
+        </div>
+         
+         <script type="text/javascript" src="{{ asset('bundles/recrutementtest/js/jquery20.js')}}">
+         </script>
+         
+         {% block javascript %}
+            <script type="text/javascript">
+                
+                var i = 0;
+                    form_reponse  = "";
+                    form_reponse += '<div>';
+                    form_reponse += '<input type="text" name="intitule_reponse[][label]" placeholder="Intitulé reponse"/>';
+                    form_reponse += '<label for="is_true">Bonne réponse</label>';
+                    form_reponse += '<input type="checkbox" name="intitule_reponse[][is_true]" />';
+                    form_reponse += '<input type="submit" name="valid_reponse" value="valider" />';
+                    form_reponse += '</div>';
+                
+                
+                // Gere le bouton de suppression du formulaire d'ajout de questions au test.
+                $('.question_content').on('click','.supprimer_question', function(e) {
+                   e.preventDefault();
+                   $(this).parent().remove();
+                });
+                
+                var i = 1;
+                $('.add_question').on('click', function(){
+                    
+                    var form_reponse;
+                    form_question  = "";
+                    form_question += '<div>';
+                    form_question += '<input type="text" name="intitule_question['+i+'][label]" placeholder="Intitulé question '+i+'"/>';
+                    form_question += '<a href="" name="supprimer_question" class="supprimer_question">supprimer</a>';
+                    form_question += '</div>';
+                    
+                    $('.question_content').append(form_question);
+                    i ++;
+                });
+                
+                
+                var i= 1;
+                // Form reponse généré par le dataPrototype
+               // var formResponse = '<div><label class="required">Reponse'+i+'</label><div id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name__"><div><label for="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule" class="required">Intitule</label><input type="text" id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule" name="recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][intitule]" required="required" /></div><div><label for="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue" class="required">Is true</label><input type="text" id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue" name="recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][isTrue]" required="required" /></div></div></div>';
+                $('#ajout-form').on('click', function() {
+
+                    //var formQuestion = '<div><label class="required">Question 1</label><div id="recrutementtest_recrutementtestbundle_test_questions___name__"><div><label for="recrutementtest_recrutementtestbundle_test_questions___name___libelle" class="required">Libelle</label><input type="textarea" id="recrutementtest_recrutementtestbundle_test_questions___name___libelle" name="recrutementtest_recrutementtestbundle_test[questions][__name__][libelle]" required="required" /></div><div><label class="required">Reponses</label><div id="recrutementtest_recrutementtestbundle_test_questions___name___reponses" data-prototype="&lt;div&gt;&lt;label class=&quot;required&quot;&gt;__name__label__&lt;/label&gt;&lt;div id=&quot;recrutementtest_recrutementtestbundle_test_questions___name___reponses___name__&quot;&gt;&lt;div&gt;&lt;label for=&quot;recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule&quot; class=&quot;required&quot;&gt;Intitule&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule&quot; name=&quot;recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][intitule]&quot; required=&quot;required&quot; /&gt;&lt;/div&gt;&lt;div&gt;&lt;label for=&quot;recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue&quot; class=&quot;required&quot;&gt;Is true&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue&quot; name=&quot;recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][isTrue]&quot; required=&quot;required&quot; /&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;"></div></div></div><input type="button" class="ajoutReponse" value="ajouter une reponse" /></div>';
+                    
+                    $.get( "manage_question.html.twig", function( data ) {
+                        alert(data);
+                       $('.questionForm').append(data);
+                    });
+                    
+                    
+                    var formQuestion = "";
+                    $('#recrutementtest_recrutementtestbundle_test_questions').append(formQuestion);
+                });
+                
+                $('body').on('click','.ajoutReponse', function(event) {
+                    
+                    // Form reponse généré par le dataPrototype
+                    var formResponse = '<div><label class="required">Reponse'+i+'</label><div id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name__"><div><label for="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule" class="required">Intitule</label><input type="textarea" id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___intitule" name="recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][intitule]" required="required" /></div><div><label for="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue" class="required">Is true</label><input type="checkbox" id="recrutementtest_recrutementtestbundle_test_questions___name___reponses___name___isTrue" name="recrutementtest_recrutementtestbundle_test[questions][__name__][reponses][__name__][isTrue]" required="required" /></div></div></div>';
+                    i = i + 1;
+                    event.preventDefault();
+                    $('#recrutementtest_recrutementtestbundle_test_questions').append(formResponse);
+                });
+                    
+                    $(".addResponse").on('click',function(){
+
+                        $('#response_form #id_question').val($(this).attr("data-id"));         
+                        $("#addResponse").fancybox({
+                            'scrolling'		: 'no',
+                            'titleShow'		: false
+                        });
+                         
+                    });
+                    
+                    
+                    $("#response_form").bind("submit", function(e) {
+                        e.preventDefault();
+
+                            $.ajax({
+                                    url: $(this).attr('action'),
+                                    type: $(this).attr('method'),
+                                    data: $(this).serialize(),
+                                    success: function(data) {
+                                            $.fancybox.close();
+                                            var intitule = $('#response_form #intitule_response').val();
+                                            var is_true = $('#response_form #is_true').val();
+                                            var id_question = $('#response_form #id_question').val();
+
+                                            $('tr#'+id_question+ ' .responses').append(intitule);
+                                            if ( $('#response_form #is_true').is(':checked') ) {
+                                                $('tr#'+id_question+ ' .correct-response').append("<div><input type='checkbox' checked disabled='disabled'></div>");
+                                            } else {
+                                                $('tr#'+id_question+ ' .correct-response').append("<div><input type='checkbox' disabled='disabled'></div>");
+                                            }
+                                    }
+                            });
+                            
+                            return false;
+                    });
+
+            </script>
+        {% endblock javascript %}
+{% endblock body %}

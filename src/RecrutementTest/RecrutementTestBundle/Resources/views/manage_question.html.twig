@@ -1,0 +1,76 @@
+{% extends "RecrutementTestBundle::layout_admin.html.twig" %}
+{% block body %}
+    <h3>Ajout d'un formulaire de questions</h3>
+    <form action="#" method="post" >
+            {{ form_start(form_question) }}   
+            {{ form_errors(form_question) }}
+
+            {{ form_row(form_question.libelle) }}
+            <div class="question"></div>
+            <div>
+                {#<a href="" id="addQuestion-btn" >Ajouter une question</a>#}
+            </div>
+            
+            <div class="reponse_content"></div>
+            <input type="button" class="add_reponse" name="add_reponse" value="ajouter une reponse" />
+        <table>
+            {% if aReponses is defined %}
+            <th>Proposition de réponse</th>
+            <th>Bonne réponse</th>
+            <th>Action</th>
+            {% set i = 0 %}
+                {% for oReponse in aReponses %}
+                
+                <tr>
+                    <td>
+                        <input type="text" name="reponse_base[{{ i }}][intitule]" value="{{ oReponse.intitule }}" />
+                        <input type="hidden" name="reponse_base[{{ i }}][identifiant]" value="{{ oReponse.id }}" />
+                    </td>
+                    {% if oReponse.isTrue == true %}
+                        <td><input type="checkbox" name="reponse_base[{{ i }}][is_true]" checked value="true"/></td>
+                    {% else %}
+                        <td><input type="checkbox" name="reponse_base[{{ i }}][is_true]" /></td>
+                    {% endif %}
+                    <td>
+                       <a href="{{ path('drop_reponse_in_question', { 'iIdReponse': oReponse.id }) }}" >supprimer</a>
+                    </td>
+                </tr>
+                
+                {% set i = i + 1 %}
+                {% endfor %}
+            {% else %}
+                <div class="flashMessage">Aucune reponse pour cette question</div>
+            {% endif %}
+        </table>
+        {{ form_rest(form_question) }}
+        <input type="submit" name="valid_question_form" value="valider le formulaire" />
+        
+        {{ form_end(form_question, { 'render_rest': false }) }}
+    </form>
+        
+         <script type="text/javascript" src="{{ asset('bundles/recrutementtest/js/jquery20.js')}}">
+         </script>
+         
+         {% block javascript %}
+            <script type="text/javascript">
+                
+                // Rendre le select inactif
+                $('select').attr('disabled', 'disabled');
+                
+                var i = 1;
+                $('.add_reponse').on('click', function(){
+                    
+                    var form_reponse;
+                    form_reponse  = "";
+                    form_reponse += '<div>';
+                    form_reponse += '<input type="text" name="intitule_reponse['+i+'][label]" placeholder="Intitulé reponse '+i+'"/>';
+                    form_reponse += '<label for="is_true">Bonne réponse</label>';
+                    form_reponse += '<input type="checkbox" name="intitule_reponse['+i+'][is_true]" />';
+                    form_reponse += '</div>';
+                    
+                    $('.reponse_content').append(form_reponse);
+                    i ++;
+                });
+            </script>
+        {% endblock javascript %}
+{% endblock body %}

@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+    <title>Bienvenue chez novedia</title>
+    <meta http-equiv="Content-Type" content="text/html" charset=utf-8/>
+    {% stylesheets '@RecrutementTestBundle/Resources/public/css/*'%}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
+    {% endstylesheets %}
+</head>
+<body>
+    <div id="header">
+        <div id="banniere">NOVEDIA GROUP</div>
+        <div id="adminForm">
+            <form action="" method="post">
+                <input type="text" name="passAdmin" placeholder="Pass admin" />
+                <input type="submit" name="connection_admin" value="connexion"/>
+            </form>
+        </div>
+    </div>
+    <div id="menu"></div>
+    <div id="wrapper">
+            {{ form_start(oFormConnect) }}   
+            {{ form_errors(oFormConnect) }}
+            {{ form_row(oFormConnect.nom) }}
+            {{ form_row(oFormConnect.prenom) }}
+            {{ form_row(oFormConnect.email) }}
+            {#{{ form_row(oFormConnect.tests) }}#}
+            <select name="test_choice">
+                {% for oTest in aTests %}
+                    <option value="{{ oTest.id }}">
+                        {{ oTest.nom }}
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="valid_question_form" value="valider le formulaire" />
+        
+            {{ form_end(oFormConnect, { 'render_rest': false }) }}
+    </div>
+    <div id="footer"></div>
+
+</body>
+</html>

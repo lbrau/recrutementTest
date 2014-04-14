@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+    <head>
+        <title>Administration</title>
+        <meta http-equiv="Content-Type" content="text/html" charset=utf-8/>
+        {% stylesheets '@RecrutementTestBundle/Resources/public/css/*'%}
+            <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
+        {% endstylesheets %}
+        {% javascripts '@RecrutementTestBundle/Resources/public/js/*' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+                        <!-- Add fancyBox -->
+        {% endjavascripts %}
+    </head>
+        
+    <body>
+        <div id="header">
+            <div id="banniere">NOVEDIA GROUP</div>
+            <div id="bonjour" class="righthead">
+               Mode administrateur
+            </div>
+        </div>
+            
+        {% include "RecrutementTestBundle::menu.html.twig" %}
+
+        <div><br /><br /></div>
+        <hr class="crlf" />
+
+        <div id="wrapper_admin">
+           {% block body %}
+           {%endblock%}
+        </div>
+        <div id="footer">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+ <div class="menu" id="Menu1" onmouseout="fout(this)" onmouseover="fover(this)">
+  <div class="titreMenu itemOut" id="Menu1Titre">Gestion des tests</div>
+ 
+  <div class="contenuMenu" id="Menu1Item">
+      <div class="itemOut" onmouseout="this.className='itemOut'" onmouseover="this.className='itemOver'"><a href="{{ path('list_candidat') }}" class="lienMenu">Résultats des tests</a></div>
+      <div class="itemOut" onmouseout="this.className='itemOut'" onmouseover="this.className='itemOver'"><a href="{{ path('list_test') }}" class="lienMenu">Gerer un test</a></div>
+  </div>
+ 
+</div>
+<!-- Fin Menu 1 -->
+<!-- Debut Menu 2 -->
+<div class="menu" id="Menu2" onmouseout="fout(this)" onmouseover="fover(this)">
+  <div class="titreMenu itemOut" id="Menu2Titre">Candidats</div>
+ 
+  <div class="contenuMenu" id="Menu2Item">
+      <div class="itemOut" onmouseout="this.className='itemOut'" onmouseover="this.className='itemOver'"><a href="{{ path('list_candidat') }}" class="lienMenu">Consulter la liste</a></div>
+  </div>
+ 
+</div>
+<!-- Fin Menu 2 -->
+<!-- Debut Menu 3 -->
+
+<div class="menu" id="Menu3" onmouseout="fout(this)" onmouseover="fover(this)">
+  <div class="titreMenu itemOut" id="Menu3Titre">Administration</div>
+ 
+  <div class="contenuMenu" id="Menu3Item">
+      <div class="itemOut" onmouseout="this.className='itemOut'" onmouseover="this.className='itemOver'"><a href="{{ path('list_admin') }}" class="lienMenu">Gerer un admin</a></div>
+  </div>
+ 
+</div>
